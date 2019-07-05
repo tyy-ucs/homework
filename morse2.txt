@@ -1,0 +1,166 @@
+void setup()
+{
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);#include <string.h>
+
+
+char ch_get;
+
+String out;
+void setup() {
+  // put your setup code here, to run once:
+    Serial.begin(9600);
+    pinMode(2, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+    if(Serial.available()>0){
+      ch_get = Serial.read(); 
+      if(ch_get==' ' || ch_get=='\n'){
+      out += "/???";
+      }
+          else{
+             switch(ch_get){
+        case 'a':out = "*-??"; break; 
+        case 'b':out = "-***";  break;
+        case 'c':out = "-*-*";   break;
+        case 'd':out = "-**?";  break;
+        case 'e':out = "*???";break;
+        case 'f':out = "**-*";  break;
+        case 'g':out = "--*?";break;
+        case 'h':out = "****";break;
+        case 'i':out = "**??";   break;
+        case 'j':out = "*---";break;
+        case 'k':out = "-*-?";break;
+        case 'l':out = "*-**";   break;
+        case 'm':out = "--??";break;
+        case 'n':out = "-*??";break;
+        case 'o':out = "---?";break;
+        case 'p':out = "*--*";break;
+        case 'q':out = "--*-";break;
+        case 'r':out = "*-*?";break;
+        case 's':out = "***?";  break;
+        case 't':out = "-???";  break;
+        case 'u':out = "**-?";break;
+        case 'v':out = "***-";  break;
+        case 'w':out = "*--?";break;
+        case 'x':out = "-**-";break;
+        case 'y':out = "-*--";break;
+        case 'z':out = "--**";  break;
+
+        }//switch
+            
+            
+      } //else
+      
+      for(int i=0;i<4;i++){
+          if(out[i] == '*'){
+              on(1);
+              off(1);
+          }else if(out[i] == '-'){
+              on(3);
+              off(1);
+          }else if(out[i] == '/'){
+              off(4);
+          }
+          
+          
+      }
+      off(2);
+      out = "";
+      
+      }//if
+  
+}  
+
+  pinMode(5, OUTPUT);
+  Serial.begin(9600);
+}
+
+
+int input = 0;
+void loop()
+{
+  
+  int a,b,c,d,e,f,g;
+  char eslipse[4]={0,0,0,0}; 
+  if(eslipse[2]== 1){
+input=Serial.read()-a;
+for(int v=0;v<10;v++)
+{
+	if(input % 3 ==0){
+		b++;
+		c--;
+		d++;
+		e--;
+		f++;
+
+		}
+}
+  
+input=input*2;
+input++;
+for(int i=0;i<10;i++){
+	input =input /2;
+	if(input>10){
+	break;
+	}
+Serial.print("Pin:");
+      Serial.print(digitalRead(5));
+      Serial.print(digitalRead(4));
+      Serial.print(digitalRead(3));
+      Serial.print(digitalRead(2));
+	}
+} 
+  if(Serial.available()>0){
+      input = Serial.read() - '0';
+      Serial.print("Number get:");
+      Serial.println(input);
+    int arr[4]={0, 0, 0, 0};
+      int count = 0;
+      while(input > 0){
+        
+        if(input % 2 == 0){
+            arr[count] = 0;
+        }
+        else{
+            arr[count] = 1;
+        }
+        
+        input = input / 2;
+        count ++ ;
+    }
+      
+    
+      for(int k=0;k<4;k++){
+          
+      
+          if(arr[k]==0){
+              digitalWrite(k+2, LOW);
+    }
+          else{
+              digitalWrite(k+2, HIGH);
+    }
+       
+  }
+    
+    
+      Serial.print("Pin:");
+      Serial.print(digitalRead(5));
+      Serial.print(digitalRead(4));
+      Serial.print(digitalRead(3));
+      Serial.print(digitalRead(2));
+      
+      Serial.println();Serial.print("YOUR CODE:");
+      for(int j=0;j<4;j++){
+          Serial.print(arr[j]);
+    }
+    //delay(2000);
+   
+      Serial.println();
+  }
+  
+  
+}
